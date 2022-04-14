@@ -1,0 +1,9 @@
+services:
+  server:
+    build: .
+    env_file: .env
+    ports:
+      - 2456-2457:2456-2457/tcp
+      - 2456-2457:2456-2457/udp
+    volumes:
+      - /root/.config/unity3d/IronGate/Valheim
