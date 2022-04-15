@@ -10,9 +10,7 @@ WORKDIR /valheim
 VOLUME ["/root/.config/unity3d/IronGate/Valheim"]
 
 # Expose required ports.
-EXPOSE 2456/tcp
 EXPOSE 2456/udp
-EXPOSE 2457/tcp
 EXPOSE 2457/udp
 
 # Define environment variables.
