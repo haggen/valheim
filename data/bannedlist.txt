@@ -1,1 +1,0 @@
-// One SteamID64 per line. Press F2 in-game to find out yours.
