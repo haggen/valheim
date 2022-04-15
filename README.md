@@ -3,15 +3,35 @@
 ## Usage
 
 1. Clone the repository.
-2. `cp example.env .env` and change values.
-   - Password is required.
-3. (Optional) Import world files and update lists.
-   - Copy world files (`.db` and `.fwl`) to `./data/worlds`.
-   - If no world files exist they'll be created.
-   - Lists are found at `./data` directory.
-4. `docker-compose up`.
+2. Create `.env` from `example.env` and change values.
+3. Run `docker-compose up`.
+4. Import world files, config and lists.
 
-To update the server you have to rebuild the image, i.e. `docker-compose build`, and restart the server.
+### Recipes
+
+#### Importing world files
+
+Copy everything inside `./worlds` into `/root/.config/unity3d/IronGate/Valheim/worlds` inside the container.
+
+```sh
+$ docker copy ./worlds/. valheim_server_1:/root/.config/unity3d/IronGate/Valheim/worlds
+```
+
+#### Update Valheim Plus config
+
+Copy file `./valheim_plus.cfg` into `/valheim/BepInEx/config` inside the container.
+
+```sh
+$ docker copy ./valheim_plus.cfg valheim_server_1:/valheim/BepInEx/config
+```
+
+#### Update game and mods
+
+Rebuild image.
+
+```sh
+$ docker-compose build
+```
 
 ## References
 
