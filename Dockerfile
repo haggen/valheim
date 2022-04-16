@@ -6,16 +6,17 @@ RUN steamcmd +verbose +force_install_dir /valheim +login anonymous +app_update 8
 # Change current directory.
 WORKDIR /valheim
 
+# Install Valheim Plus.
+ENV VALHEIM_PLUS_VERSION 0.9.9.8
+ADD https://github.com/valheimPlus/ValheimPlus/releases/download/$VALHEIM_PLUS_VERSION/UnixServer.tar.gz .
+RUN tar xzf UnixServer.tar.gz
+
 # Persist server data.
 VOLUME ["/root/.config/unity3d/IronGate/Valheim"]
 
 # Expose required ports.
 EXPOSE 2456/udp
 EXPOSE 2457/udp
-
-# Define environment variables.
-ENV LD_LIBRARY_PATH ./linux64
-ENV SteamAppId 892970
 
 # Install entrypoint script.
 COPY entrypoint.sh /
