@@ -27,7 +27,7 @@ $ docker copy ./valheim_plus.cfg valheim_server_1:/valheim/BepInEx/config
 
 #### Update game and mods
 
-Rebuild image.
+Update Valheim Plus version in `Dockerfile` and rebuild image.
 
 ```sh
 $ docker-compose build
