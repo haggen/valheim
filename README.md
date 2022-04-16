@@ -1,28 +1,34 @@
 # My Valheim dedicated server
 
+Simple Valheim dedicated server with Valheim Plus running on Docker.
+
 ## Usage
 
 1. Clone the repository.
 2. Create `.env` from `example.env` and change values.
-3. Run `docker-compose up`.
-4. Import world files, config and lists.
+3. Optionally, import world files and update config. See [Recipes](#Recipes) below.
+4. Run `docker-compose up`.
 
 ### Recipes
 
 #### Importing world files
 
-Copy everything inside `./worlds` into `/root/.config/unity3d/IronGate/Valheim/worlds` inside the container.
+Copy your world files into `./data/worlds` before starting the server. New worlds are automatically created.
 
-```sh
-$ docker copy ./worlds/. valheim_server_1:/root/.config/unity3d/IronGate/Valheim/worlds
+#### Update admin, banned or permitted lists
+
+Update any of the `txt` files at `./data` and restart the server.
+
+```
+docker-compose restart
 ```
 
 #### Update Valheim Plus config
 
-Copy file `./valheim_plus.cfg` into `/valheim/BepInEx/config` inside the container.
+Update `./config/valheim_plus.cfg` and restart your server.
 
-```sh
-$ docker copy ./valheim_plus.cfg valheim_server_1:/valheim/BepInEx/config
+```
+docker-compose restart
 ```
 
 #### Update game and mods
@@ -32,6 +38,10 @@ Update Valheim Plus version in `Dockerfile` and rebuild image.
 ```sh
 $ docker-compose build
 ```
+
+#### Backups
+
+Simply backup `./data` and `./config` directories.
 
 ## References
 
