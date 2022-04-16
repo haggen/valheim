@@ -1,1 +1,5 @@
 .env
+
+# Valheim files we're not interested in.
+/data/worlds/*
+/data/prefs

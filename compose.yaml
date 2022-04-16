@@ -5,6 +5,5 @@ services:
     ports:
       - 2456-2457:2456-2457/udp
     volumes:
-      - data:/root/.config/unity3d/IronGate/Valheim
-volumes:
-  data:
+      - ./config/valheim_plus.cfg:/valheim/BepInEx/config/valheim_plus.cfg
+      - ./data:/root/.config/unity3d/IronGate/Valheim

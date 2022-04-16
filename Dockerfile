@@ -11,8 +11,9 @@ ENV VALHEIM_PLUS_VERSION 0.9.9.8
 ADD https://github.com/valheimPlus/ValheimPlus/releases/download/$VALHEIM_PLUS_VERSION/UnixServer.tar.gz .
 RUN tar xzf UnixServer.tar.gz
 
-# Persist server data.
+# Persist server data and config.
 VOLUME ["/root/.config/unity3d/IronGate/Valheim"]
+VOLUME ["/valheim/BepInEx/config/valheim_plus.cfg"]
 
 # Expose required ports.
 EXPOSE 2456/udp
