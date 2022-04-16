@@ -19,6 +19,10 @@ VOLUME ["/valheim/BepInEx/config/valheim_plus.cfg"]
 EXPOSE 2456/udp
 EXPOSE 2457/udp
 
+# Check if server still running periodically.
+HEALTHCHECK --interval=1m --timeout=1s --start-period=10s \
+    CMD pidof valheim_server.x86_64
+
 # Install entrypoint script.
 COPY entrypoint.sh /
 
