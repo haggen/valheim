@@ -35,6 +35,7 @@ $ docker-compose build
 
 ## References
 
+- https://valheim.plus/documentation/list
 - https://valheim.fandom.com/wiki/Valheim_Dedicated_Server
 - https://github.com/lloesche/valheim-server-docker
 - https://github.com/mbround18/valheim-docker
