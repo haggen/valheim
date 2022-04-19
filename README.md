@@ -1,4 +1,4 @@
-# ![Valheim](valheim.webp)
+# ![Valheim](valheim.svg)
 
 > Valheim dedicated server with [Valheim Plus](https://valheim.plus/) running on Docker.
 
