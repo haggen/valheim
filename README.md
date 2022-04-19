@@ -11,6 +11,16 @@
 
 ### Recipes
 
+#### Update server config.
+
+Update values at `.env` and restart the server.
+
+```
+docker-compose restart
+```
+
+⚠️ Just remember that world files must match the world name.
+
 #### Importing world files
 
 Copy your world files into `./data/worlds` before starting the server. New worlds are automatically created.
@@ -23,9 +33,9 @@ Update any of the `txt` files at `./data` and restart the server.
 docker-compose restart
 ```
 
-#### Update Valheim Plus config
+#### Update Valheim Plus config.
 
-Update `./config/valheim_plus.cfg` and restart your server.
+Update `./config/valheim_plus.cfg` and restart your server. Check out [full documentation](https://valheim.plus/documentation/list).
 
 ```
 docker-compose restart
