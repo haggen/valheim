@@ -1,6 +1,6 @@
-# My Valheim dedicated server
+# ![Valheim](valheim.webp)
 
-Simple Valheim dedicated server with Valheim Plus running on Docker.
+> Valheim dedicated server with [Valheim Plus](https://valheim.plus/) running on Docker.
 
 ## Usage
 
@@ -31,9 +31,17 @@ Update `./config/valheim_plus.cfg` and restart your server.
 docker-compose restart
 ```
 
-#### Update game and mods
+#### Update game to latest version
 
-Update Valheim Plus version in `Dockerfile` and rebuild image.
+Simply rebuild image. It'll always install the latest version.
+
+```sh
+$ docker-compose build
+```
+
+#### Update Valheim Plus
+
+Change `VALHEIM_PLUS_VERSION` variable in `Dockerfile` and rebuild image.
 
 ```sh
 $ docker-compose build
@@ -54,3 +62,5 @@ Simply backup `./data` and `./config` directories.
 ## Legal
 
 Apache-2.0 © 2022 Arthur Corenzan
+
+This project is not created by, affiliated with or sponsored by Iron Gate Studio. Valheim and the Valheim logo are intellectual properties of Iron Gate Studio. All rights are reserved worldwide.
