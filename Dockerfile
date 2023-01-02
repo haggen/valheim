@@ -1,4 +1,4 @@
-FROM steamcmd/steamcmd:ubuntu-20
+FROM steamcmd/steamcmd:ubuntu-22
 
 # Install latest version of Valheim dedicated game server.
 RUN steamcmd +verbose +force_install_dir /valheim +login anonymous +app_update 896660 +quit
