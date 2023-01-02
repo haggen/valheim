@@ -11,10 +11,10 @@ ENV VALHEIM_PLUS_VERSION 0.9.9.11
 ADD https://github.com/valheimPlus/ValheimPlus/releases/download/$VALHEIM_PLUS_VERSION/UnixServer.tar.gz .
 RUN tar xzf UnixServer.tar.gz
 
-# Mounpoint for world data.
+# Mountpoint for world data.
 VOLUME ["/root/.config/unity3d/IronGate/Valheim"]
 
-# Mounpoint for Valheim Plus config.
+# Mountpoint for Valheim Plus config.
 VOLUME ["/valheim/BepInEx/config/valheim_plus.cfg"]
 
 # Expose required ports.
