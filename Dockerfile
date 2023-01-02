@@ -1,7 +1,7 @@
 FROM steamcmd/steamcmd:ubuntu-22
 
 # Install latest version of Valheim dedicated game server.
-RUN steamcmd +verbose +force_install_dir /valheim +login anonymous +app_update 896660 +quit
+RUN steamcmd +login anonymous +force_install_dir /valheim +app_update 896660 +quit
 
 # Change working directory.
 WORKDIR /valheim
