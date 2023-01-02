@@ -7,19 +7,19 @@
 1. Clone the repository.
 2. Create `.env` from `example.env` and change values.
 3. Optionally, import world files and update config. See [Recipes](#Recipes) below.
-4. Run `docker-compose up`.
+4. Run `docker compose up`.
+
+> ⚠️ Just remember that world files must match the world name.
 
 ### Recipes
 
-#### Update server config.
+#### Update server config
 
 Update values at `.env` and restart the server.
 
+```sh
+docker compose restart
 ```
-docker-compose restart
-```
-
-⚠️ Just remember that world files must match the world name.
 
 #### Importing world files
 
@@ -29,16 +29,16 @@ Copy your world files into `./data/worlds` before starting the server. New world
 
 Update any of the `txt` files at `./data` and restart the server.
 
-```
-docker-compose restart
+```sh
+docker compose restart
 ```
 
-#### Update Valheim Plus config.
+#### Update Valheim Plus config
 
 Update `./config/valheim_plus.cfg` and restart your server. Check out [full documentation](https://valheim.plus/documentation/list).
 
-```
-docker-compose restart
+```sh
+docker compose restart
 ```
 
 #### Update game to latest version
@@ -46,7 +46,7 @@ docker-compose restart
 Simply rebuild image. It'll always install the latest version.
 
 ```sh
-$ docker-compose build
+docker compose build
 ```
 
 #### Update Valheim Plus
@@ -54,7 +54,7 @@ $ docker-compose build
 Change `VALHEIM_PLUS_VERSION` variable in `Dockerfile` and rebuild image.
 
 ```sh
-$ docker-compose build
+docker compose build
 ```
 
 #### Backups
@@ -63,11 +63,11 @@ Simply backup `./data` and `./config` directories.
 
 ## References
 
-- https://valheim.plus/documentation/list
-- https://valheim.fandom.com/wiki/Valheim_Dedicated_Server
-- https://github.com/lloesche/valheim-server-docker
-- https://github.com/mbround18/valheim-docker
-- https://github.com/steamcmd/docker
+- <https://valheim.plus/documentation/list>
+- <https://valheim.fandom.com/wiki/Valheim_Dedicated_Server>
+- <https://github.com/lloesche/valheim-server-docker>
+- <https://github.com/mbround18/valheim-docker>
+- <https://github.com/steamcmd/docker>
 
 ## Legal
 
