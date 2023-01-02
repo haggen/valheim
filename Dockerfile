@@ -7,7 +7,7 @@ RUN steamcmd +login anonymous +force_install_dir /valheim +app_update 896660 +qu
 WORKDIR /valheim
 
 # Install Valheim Plus.
-ENV VALHEIM_PLUS_VERSION 0.9.9.8
+ENV VALHEIM_PLUS_VERSION 0.9.9.11
 ADD https://github.com/valheimPlus/ValheimPlus/releases/download/$VALHEIM_PLUS_VERSION/UnixServer.tar.gz .
 RUN tar xzf UnixServer.tar.gz
 
