@@ -1,7 +1,4 @@
 .env
 
 # Valheim files we're not interested in.
-/data/worlds/*.old
-/data/worlds/*.fwl
-/data/worlds/*.db
-/data/prefs
+/data/worlds/*

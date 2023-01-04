@@ -12,15 +12,12 @@ services:
   netdata:
     image: netdata/netdata
     restart: always
-    hostname: example.com
     cap_add:
       - SYS_PTRACE
     security_opt:
       - apparmor:unconfined
-    ports:
-      - 80:19999
     volumes:
-      - ./netdata:/etc/netdata:ro
+      - netdata-config:/etc/netdata:ro
       - netdata-lib:/var/lib/netdata
       - netdata-cache:/var/cache/netdata
       - /etc/passwd:/host/etc/passwd:ro
@@ -28,7 +25,25 @@ services:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /etc/os-release:/host/etc/os-release:ro
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.netdata.tls=true
+      - traefik.http.routers.netdata.rule=Host(`valheim.crz.li`)
+  traefik:
+    image: traefik
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    command:
+      - --log.level=DEBUG
+      - --api.insecure=false
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
 
 volumes:
+  netdata-config:
   netdata-lib:
   netdata-cache:
