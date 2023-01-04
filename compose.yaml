@@ -1,11 +1,35 @@
 services:
-  server:
+  valheim:
     build: .
-    env_file: .env
-    stop_signal: SIGINT
     restart: always
+    stop_signal: SIGINT
+    env_file: .env
     ports:
       - 2456-2457:2456-2457/udp
     volumes:
       - ./config/valheim_plus.cfg:/valheim/BepInEx/config/valheim_plus.cfg
       - ./data:/root/.config/unity3d/IronGate/Valheim
+  netdata:
+    image: netdata/netdata
+    restart: always
+    hostname: example.com
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor:unconfined
+    ports:
+      - 19999:80
+    volumes:
+      - netdata-config:/etc/netdata
+      - netdata-lib:/var/lib/netdata
+      - netdata-cache:/var/cache/netdata
+      - /etc/passwd:/host/etc/passwd:ro
+      - /etc/group:/host/etc/group:ro
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /etc/os-release:/host/etc/os-release:ro
+
+volumes:
+  netdata-config:
+  netdata-lib:
+  netdata-cache:
