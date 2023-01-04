@@ -18,9 +18,9 @@ services:
     security_opt:
       - apparmor:unconfined
     ports:
-      - 19999:80
+      - 80:19999
     volumes:
-      - netdata-config:/etc/netdata
+      - ./netdata:/etc/netdata:ro
       - netdata-lib:/var/lib/netdata
       - netdata-cache:/var/cache/netdata
       - /etc/passwd:/host/etc/passwd:ro
@@ -30,6 +30,5 @@ services:
       - /etc/os-release:/host/etc/os-release:ro
 
 volumes:
-  netdata-config:
   netdata-lib:
   netdata-cache:
