@@ -29,6 +29,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.netdata.tls=true
       - traefik.http.routers.netdata.rule=Host(`valheim.crz.li`)
+      - traefik.http.routers.whoami.middlewares=https
   traefik:
     image: traefik
     restart: always
@@ -44,6 +45,8 @@ services:
       - --providers.docker.exposedbydefault=false
       - --entrypoints.web.address=:80
       - --entrypoints.websecure.address=:443
+    labels:
+      - traefik.http.middlewares.https.redirectscheme.scheme=https
 
 volumes:
   netdata-config:
