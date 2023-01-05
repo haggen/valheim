@@ -25,11 +25,15 @@ services:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /etc/os-release:/host/etc/os-release:ro
+    ports:
+      - 19999
     labels:
       - traefik.enable=true
-      - traefik.http.routers.netdata.tls=true
+      - traefik.http.routers.netdatasecure.tls.certresolver=myresolver
+      - traefik.http.routers.netdatasecure.rule=Host(`valheim.crz.li`)
+      - traefik.http.routers.netdatasecure.entrypoints=websecure
       - traefik.http.routers.netdata.rule=Host(`valheim.crz.li`)
-      - traefik.http.routers.whoami.middlewares=https
+      - traefik.http.routers.netdata.entrypoints=web
   traefik:
     image: traefik
     restart: always
@@ -37,18 +41,21 @@ services:
       - 80:80
       - 443:443
     volumes:
+      - letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock
     command:
       - --log.level=DEBUG
-      - --api.insecure=false
       - --providers.docker=true
       - --providers.docker.exposedbydefault=false
       - --entrypoints.web.address=:80
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
       - --entrypoints.websecure.address=:443
-    labels:
-      - traefik.http.middlewares.https.redirectscheme.scheme=https
+      - --certificatesresolvers.myresolver.acme.tlschallenge=true
+      - --certificatesresolvers.myresolver.acme.email=arthur@corenzan.com
+      - --certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json
 
 volumes:
   netdata-config:
   netdata-lib:
   netdata-cache:
+  letsencrypt:
