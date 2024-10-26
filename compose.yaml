@@ -7,5 +7,3 @@ services:
     env_file: .env
     ports:
       - 2456-2457:2456-2457/udp
-    volumes:
-      - ./data:/home/valheim/.config/unity3d/IronGate/Valheim
