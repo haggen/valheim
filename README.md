@@ -1,6 +1,6 @@
 # ![Valheim](valheim.svg)
 
-> Valheim dedicated server with [Valheim Plus](https://valheim.plus/) running on Docker.
+> Valheim dedicated server on Docker.
 
 ## Usage
 
@@ -33,25 +33,9 @@ Update any of the `txt` files at `./data` and restart the server.
 docker compose restart
 ```
 
-#### Update Valheim Plus config
-
-Update `./config/valheim_plus.cfg` and restart your server. Check out [full documentation](https://valheim.plus/documentation/list).
-
-```sh
-docker compose restart
-```
-
 #### Update game to latest version
 
 Simply rebuild image. It'll always install the latest version.
-
-```sh
-docker compose build
-```
-
-#### Update Valheim Plus
-
-Change `VALHEIM_PLUS_VERSION` variable in `Dockerfile` and rebuild image.
 
 ```sh
 docker compose build

@@ -2,60 +2,10 @@ services:
   valheim:
     build: .
     restart: always
+    init: true
     stop_signal: SIGINT
     env_file: .env
     ports:
       - 2456-2457:2456-2457/udp
     volumes:
-      - ./config/valheim_plus.cfg:/valheim/BepInEx/config/valheim_plus.cfg
-      - ./data:/root/.config/unity3d/IronGate/Valheim
-  netdata:
-    image: netdata/netdata
-    restart: always
-    cap_add:
-      - SYS_PTRACE
-    security_opt:
-      - apparmor:unconfined
-    volumes:
-      - netdata-config:/etc/netdata:ro
-      - netdata-lib:/var/lib/netdata
-      - netdata-cache:/var/cache/netdata
-      - /etc/passwd:/host/etc/passwd:ro
-      - /etc/group:/host/etc/group:ro
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /etc/os-release:/host/etc/os-release:ro
-    ports:
-      - 19999
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.netdatasecure.tls.certresolver=myresolver
-      - traefik.http.routers.netdatasecure.rule=Host(`valheim.crz.li`)
-      - traefik.http.routers.netdatasecure.entrypoints=websecure
-      - traefik.http.routers.netdata.rule=Host(`valheim.crz.li`)
-      - traefik.http.routers.netdata.entrypoints=web
-  traefik:
-    image: traefik
-    restart: always
-    ports:
-      - 80:80
-      - 443:443
-    volumes:
-      - letsencrypt:/letsencrypt
-      - /var/run/docker.sock:/var/run/docker.sock
-    command:
-      - --log.level=DEBUG
-      - --providers.docker=true
-      - --providers.docker.exposedbydefault=false
-      - --entrypoints.web.address=:80
-      - --entrypoints.web.http.redirections.entrypoint.to=websecure
-      - --entrypoints.websecure.address=:443
-      - --certificatesresolvers.myresolver.acme.tlschallenge=true
-      - --certificatesresolvers.myresolver.acme.email=arthur@corenzan.com
-      - --certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json
-
-volumes:
-  netdata-config:
-  netdata-lib:
-  netdata-cache:
-  letsencrypt:
+      - ./data:/home/valheim/.config/unity3d/IronGate/Valheim
